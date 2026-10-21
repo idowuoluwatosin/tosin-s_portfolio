@@ -1,175 +1,270 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oluwatosin | Data Analyst Portfolio</title>
-  <meta name="description" content="Oluwatosin's data analytics portfolio featuring projects in Excel, SQL, Python and Power BI.">
-
+  <meta name="description" content="Oluwatosin Idowu's data analytics portfolio, featuring projects in Excel, SQL, Python, and Power BI.">
+  <title>Oluwatosin Idowu | Data Analyst Portfolio</title>
   <style>
+    :root {
+      --bg: #0b1120;
+      --panel: #111b2e;
+      --panel-2: #15223a;
+      --text: #edf3ff;
+      --muted: #a9b7ce;
+      --blue: #6ea8fe;
+      --blue-strong: #367bf5;
+      --line: rgba(180, 200, 230, .16);
+      --white: #fff;
+      --radius: 18px;
+      --max: 1100px;
+    }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
-      line-height: 1.7;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 80% 0%, rgba(54,123,245,.15), transparent 30%), var(--bg);
+      color: var(--text);
+      line-height: 1.65;
     }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
     header {
-      background: #10233f;
-      color: white;
-      padding: 65px 20px;
-      text-align: center;
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(11,17,32,.82);
+      border-bottom: 1px solid var(--line);
     }
-    header h1 { font-size: 38px; margin: 0; }
-    header p { color: #d4deed; }
-    nav { margin-top: 22px; }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
+    nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-weight: 850; letter-spacing: .08em; font-size: 1.12rem; }
+    .brand span { color: var(--blue); }
+    .nav-links { display: flex; align-items: center; gap: 25px; color: var(--muted); font-size: .94rem; }
+    .nav-links a:hover, .text-link:hover { color: var(--blue); }
+    .menu-button { display: none; border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 10px; padding: 8px 12px; }
+    .hero { padding: 92px 0 76px; }
+    .hero-grid { display: grid; grid-template-columns: 1.4fr .8fr; align-items: center; gap: 54px; }
+    .eyebrow { display: inline-flex; gap: 9px; align-items: center; color: var(--blue); font-size: .82rem; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 2px; background: var(--blue); }
+    h1 { font-size: clamp(2.7rem, 6vw, 4.8rem); line-height: 1.04; letter-spacing: -.055em; margin: 20px 0; }
+    h1 span { color: var(--blue); }
+    .hero p { max-width: 640px; color: var(--muted); font-size: 1.1rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border-radius: 11px; font-weight: 750; border: 1px solid var(--line); transition: transform .2s, background .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { background: var(--blue-strong); border-color: var(--blue-strong); color: white; }
+    .button.secondary { background: rgba(255,255,255,.03); }
+    .profile-card { background: linear-gradient(145deg, rgba(110,168,254,.15), rgba(17,27,46,.92)); border: 1px solid var(--line); border-radius: 26px; padding: 27px; box-shadow: 0 24px 70px rgba(0,0,0,.18); }
+    .avatar { width: 72px; height: 72px; display: grid; place-items: center; border-radius: 22px; background: linear-gradient(135deg, var(--blue-strong), #83b8ff); color: white; font-size: 1.45rem; font-weight: 850; }
+    .profile-card h2 { margin: 18px 0 3px; font-size: 1.35rem; }
+    .profile-card .role { margin: 0; color: var(--blue); font-size: .95rem; }
+    .profile-card .small { font-size: .9rem; margin: 17px 0 0; }
+    .quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 23px; }
+    .stat { background: rgba(11,17,32,.48); border: 1px solid var(--line); border-radius: 12px; padding: 12px 8px; text-align: center; }
+    .stat strong { display: block; font-size: 1.12rem; }
+    .stat span { color: var(--muted); font-size: .72rem; }
+    section { padding: 68px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 28px; }
+    .section-kicker { color: var(--blue); text-transform: uppercase; font-size: .78rem; font-weight: 800; letter-spacing: .14em; }
+    h2.section-title { margin: 7px 0 0; font-size: clamp(1.8rem, 4vw, 2.55rem); line-height: 1.2; letter-spacing: -.035em; }
+    .section-intro { color: var(--muted); max-width: 560px; margin: 10px 0 0; }
+    .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .project-card { display: flex; flex-direction: column; background: linear-gradient(180deg, var(--panel), rgba(17,27,46,.72)); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; min-height: 285px; transition: border-color .2s, transform .2s; }
+    .project-card:hover { border-color: rgba(110,168,254,.55); transform: translateY(-3px); }
+    .project-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .project-icon { width: 46px; height: 46px; display: grid; place-items: center; background: rgba(110,168,254,.12); color: var(--blue); border-radius: 13px; font-size: 1.25rem; }
+    .project-type { color: var(--muted); font-size: .76rem; border: 1px solid var(--line); border-radius: 999px; padding: 5px 9px; }
+    .project-card h3 { font-size: 1.22rem; margin: 20px 0 8px; }
+    .project-card p { color: var(--muted); margin: 0 0 18px; font-size: .95rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 4px; }
+    .tag { color: #c9dcff; background: rgba(110,168,254,.09); border: 1px solid rgba(110,168,254,.15); border-radius: 7px; padding: 4px 8px; font-size: .76rem; }
+    .project-links { display: flex; gap: 17px; margin-top: 20px; font-size: .9rem; font-weight: 700; }
+    .text-link { color: var(--blue); }
+    .project-links .muted-link { color: var(--muted); font-weight: 600; }
+    .skills-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 32px; align-items: start; }
+    .skills-panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 25px; }
+    .skill-row { display: grid; grid-template-columns: 100px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .skill-row:last-child { border-bottom: 0; }
+    .skill-row strong { font-size: .93rem; }
+    .skill-row span { color: var(--muted); font-size: .92rem; }
+    .about-copy { color: var(--muted); }
+    .about-copy p { margin-top: 0; }
+    .about-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+    .about-point { border: 1px solid var(--line); background: rgba(255,255,255,.025); padding: 13px; border-radius: 12px; color: var(--text); font-size: .9rem; }
+    .about-point span { color: var(--blue); margin-right: 8px; }
+    .contact-panel { background: linear-gradient(120deg, rgba(54,123,245,.17), rgba(17,27,46,.9)); border: 1px solid var(--line); border-radius: 24px; padding: clamp(25px, 5vw, 46px); display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+    .contact-panel p { color: var(--muted); max-width: 600px; margin-bottom: 0; }
+    footer { border-top: 1px solid var(--line); padding: 25px 0; color: var(--muted); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .hero { padding-top: 62px; }
+      .hero-grid, .skills-wrap { grid-template-columns: 1fr; gap: 28px; }
+      .projects { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .nav-links { display: none; position: absolute; top: 74px; left: 0; right: 0; padding: 18px 20px; background: #0b1120; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; }
+      .nav-links.open { display: flex; }
+      .menu-button { display: inline-block; }
+      .contact-panel { align-items: flex-start; flex-direction: column; }
     }
-    main { max-width: 950px; margin: auto; padding: 25px 20px; }
-    section {
-      background: white;
-      margin: 24px 0;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px #14213d0b;
-    }
-    h2 { color: #17365d; }
-    .skills span {
-      display: inline-block;
-      background: #e8eef8;
-      padding: 7px 12px;
-      margin: 5px;
-      border-radius: 6px;
-    }
-    .project {
-      border-left: 4px solid #2d65b0;
-      padding-left: 16px;
-      margin: 22px 0;
-    }
-    a { color: #245da8; }
-    .button {
-      display: inline-block;
-      background: #3478c9;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 6px;
-      text-decoration: none;
-      margin-top: 8px;
-    }
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #64748b;
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Hi, I'm Oluwatosin</h1>
-    <p>Data Analyst | Turning Data into Meaningful Insights</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#home">TOSIN<span>.</span></a>
+      <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
   </header>
 
   <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I'm an aspiring Data Analyst with a background in Accounting
-        and an interest in using data to support informed business
-        decisions. I enjoy cleaning data, identifying trends, and
-        communicating insights that help solve real-world problems.
-      </p>
-    </section>
-
-    <section id="skills">
-      <h2>Technical Skills</h2>
-      <div class="skills">
-        <span>Microsoft Excel</span>
-        <span>SQL</span>
-        <span>Python</span>
-        <span>Power BI</span>
-        <span>Data Cleaning</span>
-        <span>Exploratory Data Analysis</span>
-        <span>Data Visualization</span>
-        <span>Reporting</span>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Data Analyst Portfolio</div>
+          <h1>Turning data into <span>clear decisions.</span></h1>
+          <p>I'm Oluwatosin Idowu, an aspiring Data Analyst who enjoys cleaning data, finding patterns, and turning analysis into practical business insights.</p>
+          <p>My toolkit includes Excel, SQL, Python, and data visualization. Explore my projects and the thinking behind them.</p>
+          <div class="actions">
+            <a class="button primary" href="#projects">Explore Projects ↘</a>
+            <a class="button secondary" href="https://github.com/tosinanotosin" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a>
+          </div>
+        </div>
+        <aside class="profile-card">
+          <div class="avatar" aria-hidden="true">OI</div>
+          <h2>Oluwatosin Idowu</h2>
+          <p class="role">Data Analyst</p>
+          <p class="small">Focused on data cleaning, exploratory analysis, reporting, and helping people make better-informed decisions.</p>
+          <div class="quick-stats">
+            <div class="stat"><strong>Excel</strong><span>Analysis</span></div>
+            <div class="stat"><strong>SQL</strong><span>Querying</span></div>
+            <div class="stat"><strong>Python</strong><span>EDA</span></div>
+          </div>
+        </aside>
       </div>
     </section>
 
     <section id="projects">
-      <h2>Featured Projects</h2>
-
-      <div class="project">
-        <h3>Loan Portfolio Analysis</h3>
-        <p>
-          An analysis of loan performance, loan status, customer
-          categories, branch activity, and disbursement trends.
-        </p>
-        <a href="https://github.com/tosinanotosin"
-           target="_blank" rel="noopener noreferrer">
-          View my GitHub
-        </a>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Selected work</div>
+            <h2 class="section-title">Projects that tell a story</h2>
+            <p class="section-intro">A growing collection of practical analytics projects. Open each project repository to explore the dataset, process, code, and findings.</p>
+          </div>
+        </div>
+        <div class="projects">
+          <article class="project-card">
+            <div class="project-top"><div class="project-icon" aria-hidden="true">▥</div><span class="project-type">Business Analysis</span></div>
+            <h3>Loan Portfolio Analysis</h3>
+            <p>Explore loan performance across status, customer category, branch, and disbursement period. The analysis highlights default patterns and portfolio trends.</p>
+            <div class="tags"><span class="tag">Excel</span><span class="tag">Power BI</span><span class="tag">Data Cleaning</span><span class="tag">KPIs</span></div>
+            <div class="project-links"><a class="text-link" href="https://github.com/tosinanotosin" target="_blank" rel="noopener noreferrer">Find project on GitHub ↗</a></div>
+          </article>
+          <article class="project-card">
+            <div class="project-top"><div class="project-icon" aria-hidden="true">⌘</div><span class="project-type">SQL</span></div>
+            <h3>SQL Data Analysis</h3>
+            <p>Use SQL queries to filter, join, group, and summarize data, then answer business questions with clear, reproducible results.</p>
+            <div class="tags"><span class="tag">SQL</span><span class="tag">Joins</span><span class="tag">CTEs</span><span class="tag">Aggregations</span></div>
+            <div class="project-links"><a class="text-link" href="https://github.com/tosinanotosin" target="_blank" rel="noopener noreferrer">Find project on GitHub ↗</a></div>
+          </article>
+          <article class="project-card">
+            <div class="project-top"><div class="project-icon" aria-hidden="true">⌁</div><span class="project-type">Exploratory Analysis</span></div>
+            <h3>Python Exploratory Data Analysis</h3>
+            <p>Inspect a dataset, handle missing values and duplicates, summarize key variables, and use visualizations to identify trends and outliers.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Matplotlib</span><span class="tag">EDA</span></div>
+            <div class="project-links"><a class="text-link" href="https://github.com/tosinanotosin" target="_blank" rel="noopener noreferrer">Find project on GitHub ↗</a></div>
+          </article>
+          <article class="project-card">
+            <div class="project-top"><div class="project-icon" aria-hidden="true">▦</div><span class="project-type">Data Visualization</span></div>
+            <h3>Dashboard & Reporting Projects</h3>
+            <p>Present metrics and trends through clear charts, summary indicators, and interactive views designed to make findings easier to understand.</p>
+            <div class="tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">Visualization</span><span class="tag">Reporting</span></div>
+            <div class="project-links"><a class="text-link" href="https://github.com/tosinanotosin" target="_blank" rel="noopener noreferrer">View GitHub profile ↗</a></div>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="project">
-        <h3>SQL Data Analysis</h3>
-        <p>
-          A space to showcase SQL queries, data exploration,
-          joins, aggregations, and business questions.
-        </p>
-        <a href="https://github.com/tosinanotosin"
-           target="_blank" rel="noopener noreferrer">
-          View my repositories
-        </a>
+    <section id="skills">
+      <div class="container skills-wrap">
+        <div>
+          <div class="section-kicker">What I work with</div>
+          <h2 class="section-title">Skills & tools</h2>
+          <p class="section-intro">Tools I use or am developing through practice, training, and projects.</p>
+        </div>
+        <div class="skills-panel">
+          <div class="skill-row"><strong>Excel</strong><span>Data cleaning, PivotTables, lookup functions, formulas, and reporting</span></div>
+          <div class="skill-row"><strong>SQL</strong><span>Filtering, joins, aggregations, grouping, and CTEs</span></div>
+          <div class="skill-row"><strong>Python</strong><span>pandas, exploratory data analysis, and data preparation</span></div>
+          <div class="skill-row"><strong>Power BI</strong><span>Data visualization and dashboard development</span></div>
+          <div class="skill-row"><strong>Core skills</strong><span>Problem-solving, attention to detail, research, and communicating findings</span></div>
+        </div>
       </div>
+    </section>
 
-      <div class="project">
-        <h3>Python Exploratory Data Analysis</h3>
-        <p>
-          A space to showcase data cleaning, pandas analysis,
-          visualizations, and key findings from datasets.
-        </p>
-        <a href="https://github.com/tosinanotosin"
-           target="_blank" rel="noopener noreferrer">
-          View my repositories
-        </a>
+    <section id="about">
+      <div class="container skills-wrap">
+        <div>
+          <div class="section-kicker">A little about me</div>
+          <h2 class="section-title">Curious about what data can reveal.</h2>
+        </div>
+        <div class="about-copy">
+          <p>I have an academic background in Accounting and a growing focus on data analytics. My experience with analytical coursework and practical projects has strengthened my attention to detail, research, and problem-solving.</p>
+          <p>I'm interested in using data to understand performance, spot patterns, answer business questions, and communicate findings in a straightforward way.</p>
+          <div class="about-points">
+            <div class="about-point"><span>✓</span>Structured problem-solving</div>
+            <div class="about-point"><span>✓</span>Careful data preparation</div>
+            <div class="about-point"><span>✓</span>Business-focused insights</div>
+            <div class="about-point"><span>✓</span>Clear communication</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="contact">
-      <h2>Contact Me</h2>
-      <p>I'm open to entry-level data analytics opportunities
-        and collaborations.</p>
-      <p>
-        GitHub:
-        <a href="https://github.com/tosinanotosin"
-           target="_blank" rel="noopener noreferrer">
-          github.com/tosinanotosin
-        </a>
-      </p>
-      <p>
-        LinkedIn:
-        <a href="https://www.linkedin.com/in/idowu-tosin/"
-           target="_blank" rel="noopener noreferrer">
-          Connect with me
-        </a>
-      </p>
+      <div class="container">
+        <div class="contact-panel">
+          <div>
+            <div class="section-kicker">Let's connect</div>
+            <h2 class="section-title">Have a project or opportunity?</h2>
+            <p>I'm open to connecting with data professionals, collaborating on projects, and exploring entry-level data analytics opportunities.</p>
+          </div>
+          <div class="actions">
+            <a class="button primary" href="https://github.com/tosinanotosin" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="button secondary" href="https://www.linkedin.com/in/idowu-tosin" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 Oluwatosin. Data Analyst Portfolio.</p>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Oluwatosin Idowu</span>
+      <span>Built with HTML & CSS · Hosted on GitHub Pages</span>
+    </div>
   </footer>
-
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const navLinks = document.getElementById('navLinks');
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
+
